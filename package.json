@@ -59,9 +59,9 @@
     "solidity-lint": "./node_modules/.bin/solium -d contracts",
     "lint": "./node_modules/.bin/standard",
     "lint-circle-ci": "./scripts/lint.sh",
-    "csv": "python scripts/csv_to_json.py ./mainnet-artifacts/ff-airdrop.csv ./mainnet-artifacts/merkle-input",
-    "generate": "ts-node scripts/generate-merkle-root.ts --input mainnet-artifacts/merkle-input.json",
-    "example": "ts-node scripts/generate-merkle-root.ts --input scripts/example.json"
+    "csv-to-json": "python scripts/csv_to_json.py ./mainnet-artifacts/ff-airdrop.csv ./mainnet-artifacts/merkle-input",
+    "generate-hash": "ts-node scripts/generate-merkle-root.ts --input mainnet-artifacts/merkle-input.json >> ./mainnet-artifacts/merkle-output.json",
+    "general-example-hash": "ts-node scripts/generate-merkle-root.ts --input scripts/example.json >> ./mainnet-artifacts/example-output.json"
   },
   "repository": {
     "type": "git",
