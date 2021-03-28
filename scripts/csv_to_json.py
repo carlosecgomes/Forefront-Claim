@@ -8,7 +8,6 @@ output = []
 with open(sys.argv[1]) as fle:
     f = csv.DictReader(fle)
     for line in f:
-        line["tokens"] = math.floor(float(line['tokens']))
         if int(line['tokens']) > 0:
             obj = {}
             obj['address'] = line['wallet']

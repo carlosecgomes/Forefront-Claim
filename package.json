@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "files": [
+    "build"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
   "dependencies": {
     "@openzeppelin/contracts": "3.2.0",
     "@openzeppelin/test-helpers": "^0.5.5",
@@ -17,7 +23,20 @@
     "bignumber.js": "8.0.1",
     "solidity-coverage": "^0.7.4",
     "standard": "^12.0.1",
-    "ethers": "^4.0.0"
+    "ethers": "^5.0.0",
+    "@types/chai": "^4.2.6",
+    "@types/mocha": "^5.2.7",
+    "axios": "^0.20.0",
+    "chai": "^4.2.0",
+    "commander": "^6.1.0",
+    "ethereum-waffle": "^3.0.0",
+    "ethereumjs-util": "^7.0.4",
+    "mocha": "^6.2.2",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.0",
+    "solc": "0.6.11",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
   },
   "scripts": {
     "ganache": "docker run --name audius_ganache_cli_eth_contracts -d -p 8547:8545 trufflesuite/ganache-cli:v6.9.1 -h 0.0.0.0 -a 50",
@@ -39,15 +58,14 @@
     "test-circle-ci": "./scripts/circleci-test.sh",
     "solidity-lint": "./node_modules/.bin/solium -d contracts",
     "lint": "./node_modules/.bin/standard",
-    "lint-circle-ci": "./scripts/lint.sh"
+    "lint-circle-ci": "./scripts/lint.sh",
+    "csv": "python scripts/csv_to_json.py ./mainnet-artifacts/ff-airdrop.csv ./mainnet-artifacts/merkle-input",
+    "generate": "ts-node scripts/generate-merkle-root.ts --input mainnet-artifacts/merkle-input.json",
+    "example": "ts-node scripts/generate-merkle-root.ts --input scripts/example.json"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AudiusProject/audius-claim-distribution.git"
-  },
-  "engines": {
-    "node": ">=10.16.0",
-    "npm": "6.1.0"
   },
   "author": "AudiusProject",
   "license": "ISC",
