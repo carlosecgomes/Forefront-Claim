@@ -1,7 +1,7 @@
 {
-  "name": "audius-token-claim-distribution",
+  "name": "forefont-merkle-claim",
   "version": "1.0.0",
-  "description": "",
+  "description": "Generate and verify merkle tree for scalable token claiming",
   "main": "index.js",
   "files": [
     "build"
@@ -11,48 +11,20 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "3.2.0",
-    "@openzeppelin/test-helpers": "^0.5.5",
-    "truffle": "5.1.23",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "ethereumjs-abi": "^0.6.7",
-    "ethlint": "^1.2.3",
-    "truffle-hdwallet-provider": "^1.0.13",
-    "async": "^2.6.1",
-    "babel-register": "^6.26.0",
     "bignumber.js": "8.0.1",
-    "solidity-coverage": "^0.7.4",
     "standard": "^12.0.1",
     "ethers": "^5.0.0",
-    "@types/chai": "^4.2.6",
-    "@types/mocha": "^5.2.7",
-    "axios": "^0.20.0",
-    "chai": "^4.2.0",
-    "commander": "^6.1.0",
-    "ethereum-waffle": "^3.0.0",
     "ethereumjs-util": "^7.0.4",
-    "mocha": "^6.2.2",
+    "commander": "^6.1.0",
     "prettier": "^2.0.5",
-    "rimraf": "^3.0.0",
-    "solc": "0.6.11",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3"
   },
   "scripts": {
     "csv-to-json": "python scripts/csv_to_json.py ./mainnet-artifacts/ff-airdrop.csv ./mainnet-artifacts/merkle-input",
-    "generate-hash": "ts-node scripts/generate-merkle-root.ts --input mainnet-artifacts/merkle-input.json >> ./mainnet-artifacts/merkle-output.json",
-    "generate-example-hash": "ts-node scripts/generate-merkle-root.ts --input scripts/example.json >> ./mainnet-artifacts/example-output.json",
-    "verify-hash": "ts-node scripts/verify-merkle-root.ts --input mainnet-artifacts/merkle-output.json",
-    "verify-example-hash": "ts-node scripts/verify-merkle-root.ts --input mainnet-artifacts/example-output.json"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AudiusProject/audius-claim-distribution.git"
-  },
-  "author": "AudiusProject",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AudiusProject/audius-claim-distribution/issues"
-  },
-  "homepage": "https://github.com/AudiusProject/audius-claim-distribution#readme"
+    "generate-hash": "ts-node scripts/generate-merkle-root.ts --input ./mainnet-artifacts/merkle-input.json >> ./mainnet-artifacts/merkle-output.json",
+    "generate-example-hash": "ts-node scripts/generate-merkle-root.ts --input ./mainnet-artifacts/example.json >> ./mainnet-artifacts/example-output.json",
+    "verify-hash": "ts-node scripts/verify-merkle-root.ts --input ./mainnet-artifacts/merkle-output.json",
+    "verify-example-hash": "ts-node scripts/verify-merkle-root.ts --input ./mainnet-artifacts/example-output.json"
+  }
 }
