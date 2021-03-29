@@ -2,6 +2,7 @@
 pragma solidity ^0.6.5;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/cryptography/MerkleProof.sol";
 import "./IMerkleDistributor.sol";
@@ -9,6 +10,8 @@ import "./IMerkleDistributor.sol";
 contract ForefrontMerkle is IMerkleDistributor, Ownable {
     address public immutable override token;
     bytes32 public immutable override merkleRoot;
+
+    event Withdraw(uint256 amount, address recipient);
 
     // This is a packed array of booleans.
     mapping(uint256 => uint256) private claimedBitMap;
@@ -52,6 +55,7 @@ contract ForefrontMerkle is IMerkleDistributor, Ownable {
             IERC20(token).transfer(recipient, IERC20(token).balanceOf(address(this))),
             'MerkleDistributor: Withdraw transfer failed.'
         );
+        emit Withdraw(IERC20(token).balanceOf(address(this)), recipient);
     }
 
     function totalSupply() view public returns(uint256) {

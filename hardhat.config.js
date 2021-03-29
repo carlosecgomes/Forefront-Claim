@@ -22,14 +22,21 @@ task('accounts', 'Prints the list of accounts', async () => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-	solidity: '0.6.5',
+	solidity: {
+		version: '0.6.5',
+		settings: {
+			optimizer: {
+				enabled: true,
+				runs: 999999,
+			},
+		},
+	},
 	networks: {
 		kovan: {
 			url: `https://kovan.infura.io/v3/${process.env.INFURA_KEY}`,
 			accounts: {
 				mnemonic: process.env.MNEMONIC,
 			},
-			from: '0x37c704bec16551ACae1B43aAAc8EA34cEa105468',
 		},
 		mainnet: {
 			url: `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`,
