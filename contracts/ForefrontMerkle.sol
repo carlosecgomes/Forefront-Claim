@@ -2,10 +2,11 @@
 pragma solidity ^0.6.5;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/cryptography/MerkleProof.sol";
 import "./IMerkleDistributor.sol";
 
-contract ForefrontMerkle is IMerkleDistributor {
+contract ForefrontMerkle is IMerkleDistributor, Ownable {
     address public immutable override token;
     bytes32 public immutable override merkleRoot;
 
@@ -44,4 +45,17 @@ contract ForefrontMerkle is IMerkleDistributor {
 
         emit Claimed(index, account, amount);
     }
+
+    // Allows the authorized user to reclaim the tokens deposited in this contract
+    function withdraw(address recipient) public onlyOwner() {
+        require(
+            IERC20(token).transfer(recipient, IERC20(token).balanceOf(address(this))),
+            'MerkleDistributor: Withdraw transfer failed.'
+        );
+    }
+
+    function totalSupply() view public returns(uint256) {
+        return IERC20(token).balanceOf(address(this));
+    }
+
 }
