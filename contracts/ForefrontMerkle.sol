@@ -1,8 +1,9 @@
-pragma solidity >=0.5.0;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.6.5;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/cryptography/MerkleProof.sol";
-import "./interfaces/IMerkleDistributor.sol";
+import "./IMerkleDistributor.sol";
 
 contract ForefrontMerkle is IMerkleDistributor {
     address public immutable override token;
